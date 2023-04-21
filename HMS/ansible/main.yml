@@ -30,15 +30,10 @@
 
     - name: copy artifact
       copy:
-        src: /home/ubuntu/target/build.zip
+        src: /home/ubuntu/target/HMS/
         dest: /home/adminuser/hms
         
-    - name: install zip
-      command: apt install unzip -y
-       
-    - name: unzip files
-      command: chdir=/home/adminuser/hms unzip build.zip
-
+ 
       
     - name: install nodemon
       command: chdir=/home/adminuser/hms sudo npm install -g nodemon -y
