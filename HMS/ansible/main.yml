@@ -34,10 +34,10 @@
         dest: /home/adminuser/hms
         
     - name: install zip
-      command: apt install zip -y
+      command: apt install unzip -y
        
     - name: unzip files
-      command: chdir=/home/adminuser/hms unzip build.zip -y
+      command: chdir=/home/adminuser/hms unzip build.zip
 
       
     - name: install nodemon
