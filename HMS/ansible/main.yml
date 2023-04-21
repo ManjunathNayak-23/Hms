@@ -28,12 +28,15 @@
         state: directory
       become: true
 
-    - name: copy artifact
-      copy:
-        src: /home/ubuntu/target/HMS/
+    - name: Clone a github repository
+      git:
+        repo: https://github.com/ManjunathNayak-23/Nodejsdemo.git
         dest: /home/adminuser/hms
-        
- 
+        clone: yes
+        update: yes
+        force: true
+      become: true
+
       
     - name: install nodemon
       command: chdir=/home/adminuser/hms sudo npm install -g nodemon -y
