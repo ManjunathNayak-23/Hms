@@ -38,16 +38,16 @@
 
 
     - name: install nodemon
-      command: chdir=/home/adminuser/hms sudo npm install -g nodemon -y
+      command: chdir=/home/adminuser/HMS sudo npm install -g nodemon -y
       become: true
       
 
     - name: Go to the folder and execute command
-      command: chdir=/home/adminuser/hms sudo npm install
+      command: chdir=/home/adminuser/HMS sudo npm install
       become: true
 
     - name: start server
-      command: chdir=/home/adminuser/hms/ sudo npm start > /dev/null 2>&1 &
+      command: chdir=/home/adminuser/HMS/ sudo npm start > /dev/null 2>&1 &
       become: true
       async: 4200
       poll: 0
