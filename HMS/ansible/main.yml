@@ -24,11 +24,17 @@
         path: /home/adminuser/hms
         state: directory
       become: true
+    - name: install unzip
+      command: sudo apt-get install unzip -y
+      become: true
       
     - name: copy project
       copy:
-        src: /home/ubuntu/project/HMS/
+        src: /home/ubuntu/project/
         dest: /home/adminuser/hms
+        
+     - name: unzip the archive
+       command: sudo unzip -o /home/adminuser/hms/project.zip
 
 
     - name: install nodemon
