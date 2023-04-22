@@ -18,26 +18,19 @@
     - name: install npm
       command: sudo apt install npm -y
 
-    - name: install git
-      command: sudo apt install git -y
-      become: true
 
     - name: Creates directory
       file:
         path: /home/adminuser/hms
         state: directory
       become: true
-
-    - name: Clone a github repository
-      git:
-        repo: https://github.com/ManjunathNayak-23/Nodejsdemo.git
-        dest: /home/adminuser/hms
-        clone: yes
-        update: yes
-        force: true
-      become: true
-
       
+    - name: copy project
+      copy:
+        src: /home/ubuntu/project/HMS/
+        dest: /home/adminuser/hms
+
+
     - name: install nodemon
       command: chdir=/home/adminuser/hms sudo npm install -g nodemon -y
       become: true
