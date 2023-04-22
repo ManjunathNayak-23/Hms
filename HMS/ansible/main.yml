@@ -33,7 +33,7 @@
         src: /home/ubuntu/project/
         dest: /home/adminuser/hms
         
-     - name: unzip the archive
+    - name: unzip the archive
        command: sudo unzip -o /home/adminuser/hms/project.zip
 
 
