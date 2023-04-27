@@ -49,7 +49,7 @@
     - name: start server
       command: chdir=/home/adminuser/HMS/ sudo npm start > /dev/null 2>&1 &
       become: true
-      async: 4200
+      async: 9200
       poll: 0
         
       
