@@ -24,7 +24,8 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      oldvmID=$(az vmss list-instances --resource-group vmss-test --name vmss  --query "[].instanceId"  --output tsv)
+      oldvm=$(az vmss list-instances --resource-group vmss-test --name vmss  --query "[].instanceId"  --output tsv)
+      echo "##vso[task.setvariable variable=oldvmID;isOutput=true]$oldvm"
   name: oldvmname
 - task: AzureCLI@2
   inputs:
