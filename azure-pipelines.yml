@@ -36,6 +36,7 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-          instanceIdToDelete=$(az vmss list-instances --resource-group vmss-test --name vmss --query '[0].instanceId' --output tsv)
+          instanceIdToDelete=$(az vmss list-instances --resource-group vmss-test --name vmss --query "[].instanceId"  --output tsv | sort -n | tail -n 1)
           az vmss delete-instances --resource-group vmss-test --name vmss --instance-ids $instanceIdToDelete --no-wait
   displayName: 'delete one old vm'
+
