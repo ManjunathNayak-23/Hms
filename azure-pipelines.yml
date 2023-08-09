@@ -46,4 +46,3 @@ steps:
     inlineScript: |
           az vmss delete-instances --resource-group vmss-test --name vmss --instance-ids $(oldvmname.oldvmID) --no-wait
   displayName: 'delete one old vm'
-
