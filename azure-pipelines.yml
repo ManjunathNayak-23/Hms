@@ -11,20 +11,20 @@ pool:
 
 steps:
 
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'azure-new'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: 'az vmss scale --resource-group vmss-test --name vmss --new-capacity 1'
-#   displayName: 'Downscale VMSS to 1 instance'
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'azure-new'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: |
-      currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
-          newCapacity=$((currentCapacity + 2))
-          az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
+    inlineScript: 'az vmss scale --resource-group vmss-test --name vmss --new-capacity 1'
+  displayName: 'Downscale VMSS to 1 instance'
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'azure-new'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
+#           newCapacity=$((currentCapacity + 2))
+#           az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
