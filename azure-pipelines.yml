@@ -19,12 +19,21 @@ steps:
     inlineScript: 'az vmss scale --resource-group vmss-test --name vmss --new-capacity 1'
   displayName: 'Downscale VMSS to 1 instance'
 
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'azure-new'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: |
-#       currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
-#           newCapacity=$((currentCapacity + 2))
-#           az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azure-new'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
+          newCapacity=$((currentCapacity + 2))
+          az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azure-new'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+          instanceIdToDelete=$(az vmss list-instances --resource-group vmss-test --name vmss --query '[0].instanceId' --output tsv)
+          az vmss delete-instances --resource-group vmss-test --name vmss --instance-ids $instanceIdToDelete --no-wait
