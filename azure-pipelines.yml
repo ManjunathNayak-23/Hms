@@ -26,8 +26,9 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
-          newCapacity=$((currentCapacity + 2))
+          newCapacity=$((currentCapacity + 1))
           az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
+  displayName: 'Upscale VMSS to 1 instance(updated code)'
 
 - task: AzureCLI@2
   inputs:
@@ -37,3 +38,4 @@ steps:
     inlineScript: |
           instanceIdToDelete=$(az vmss list-instances --resource-group vmss-test --name vmss --query '[0].instanceId' --output tsv)
           az vmss delete-instances --resource-group vmss-test --name vmss --instance-ids $instanceIdToDelete --no-wait
+  displayName: 'delete one old vm'
