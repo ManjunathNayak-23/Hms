@@ -17,8 +17,8 @@ steps:
     runOptions: 'commands'
     commands: |
       cd ~
-      echo $(pem) >> vmsskey.pem
-      ssh -i vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+      echo $(pem) > vmsskey.pem
+      ssh -i vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log > /home/azureuser/nginx.log
       cat /home/azureuser/nginx.log 
     readyTimeout: '20000'
 # - task: SSH@0
