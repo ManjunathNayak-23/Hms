@@ -11,50 +11,17 @@ pool:
 
 steps:
 
-
 - task: SSH@0
   inputs:
     sshEndpoint: 'bastin'
     runOptions: 'commands'
-    commands: |
-      ssh -i -----BEGIN RSA PRIVATE KEY-----
-      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
-      -----END RSA PRIVATE KEY-----
-      azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+    commands: ssh -i-azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+    interactiveSession: true
     readyTimeout: '20000'
+# - task: SSH@0
+#   inputs:
+#     sshEndpoint: 'bastin'
+#     runOptions: 'commands'
+#     commands: |
+#       ssh -i-azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+#     readyTimeout: '20000'
