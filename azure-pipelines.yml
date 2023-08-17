@@ -11,9 +11,9 @@ pool:
 
 steps:
 
-- task: AzSKSVTs@4
+- task: SSH@0
   inputs:
-    ConnectedServiceNameARM: 'azure-new'
-    GenerateMethodParameterSetSelection: 'ResourceGroupName'
-    ResourceGroupName: 'vmss-test,service-test'
-    SubscriptionId: '7b295770-0ff0-4cec-9a3c-45163fd93362'
+    sshEndpoint: 'bastin'
+    runOptions: 'commands'
+    commands: 'ssh -i "vmss_key (2).pem" azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log'
+    readyTimeout: '20000'
