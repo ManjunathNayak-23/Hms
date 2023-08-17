@@ -16,8 +16,8 @@ steps:
     sshEndpoint: 'bastin'
     runOptions: 'commands'
     commands: |
-      echo $(pem) > /home/azureuser/vmsskey.pem
-      cd /home/azureuser/
+      cd ~
+      echo $(pem) > vmsskey.pem
       chmod 400 vmsskey.pem
       ssh -i vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log > /home/azureuser/nginx.log
       cat /home/azureuser/nginx.log 
