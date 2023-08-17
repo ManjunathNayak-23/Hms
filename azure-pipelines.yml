@@ -18,7 +18,7 @@ steps:
     commands: |
       cd ~
       echo $(pem) > vmsskey.pem
-      ssh -o StrictHostKeyChecking=no vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log > /home/azureuser/nginx.log
+      ssh -o StrictHostKeyChecking=no -i vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log > /home/azureuser/nginx.log
       cat /home/azureuser/nginx.log 
     readyTimeout: '20000'
 # - task: SSH@0
