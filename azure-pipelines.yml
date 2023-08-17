@@ -7,48 +7,13 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
 
-- task: AzureCLI@2
+- task: AzSKSVTs@4
   inputs:
-    azureSubscription: 'azure-new'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az vmss scale --resource-group vmss-test --name vmss --new-capacity 1'
-  displayName: 'Downscale VMSS to 1 instance'
-
-# vm stop
-# fileshare new code
-# vm stop
-# vm start
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'azure-new'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      oldvm=$(az vmss list-instances --resource-group vmss-test --name vmss  --query "[].instanceId"  --output tsv)
-      echo "##vso[task.setvariable variable=oldvmID;isOutput=true]$oldvm"
-  name: oldvmname
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'azure-new'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      currentCapacity=$(az vmss show --resource-group vmss-test --name vmss --query 'sku.capacity' --output tsv)
-          newCapacity=$((currentCapacity + 1))
-          az vmss scale --resource-group vmss-test --name vmss --new-capacity $newCapacity
-  displayName: 'Upscale VMSS to 1 instance(updated code)'
-
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'azure-new'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: |
-#           az vmss delete-instances --resource-group vmss-test --name vmss --instance-ids $(oldvmname.oldvmID) --no-wait
-#   displayName: 'delete one old vm'
+    ConnectedServiceNameARM: 'azure-new'
+    GenerateMethodParameterSetSelection: 'ResourceGroupName'
+    ResourceGroupName: 'vmss-test,service-test'
+    SubscriptionId: '7b295770-0ff0-4cec-9a3c-45163fd93362'
