@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- none
 
 pool:
   vmImage: windows-latest
@@ -15,5 +15,5 @@ steps:
   inputs:
     sshEndpoint: 'bastin'
     runOptions: 'commands'
-    commands: 'ssh -i "vmss_key (2).pem" azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log'
+    commands: 'ssh -i $(pemkey) azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log'
     readyTimeout: '20000'
