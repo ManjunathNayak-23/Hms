@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 
@@ -16,8 +16,9 @@ steps:
     sshEndpoint: 'bastin'
     runOptions: 'commands'
     commands: |
-      echo $(pem)
-      ssh -i $(pem) azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+      cd ~
+      echo $(pem) >> vmsskey.pem
+      ssh -i vmsskey.pem azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
     interactiveSession: true
     readyTimeout: '20000'
 # - task: SSH@0
