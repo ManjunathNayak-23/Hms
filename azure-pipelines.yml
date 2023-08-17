@@ -15,7 +15,9 @@ steps:
   inputs:
     sshEndpoint: 'bastin'
     runOptions: 'commands'
-    commands: ssh -i $(pem) azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
+    commands: |
+      echo $(pem)
+      ssh -i $(pem) azureuser@20.119.195.215 cat /var/log/nginx/access.log >> /home/azureuser/nginx.log
     interactiveSession: true
     readyTimeout: '20000'
 # - task: SSH@0
